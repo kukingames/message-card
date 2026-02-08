@@ -10,54 +10,58 @@ body {
   font-family: 'Noto Serif JP', serif;
   background: linear-gradient(135deg, #fff1f5, #ffffff, #fce4ec);
   color: #333;
+  line-height: 1.5;
 }
 
 h2 { 
   text-align: center; 
   margin-bottom: 15px; 
-  font-size: 24px; /* 少し小さく */
+  font-size: 24px; 
   color:#d81b60; 
 }
 
 #countdown {
   font-weight: bold;
-  font-size: 18px; /* スマホで見やすいサイズに */
+  font-size: 18px;
   color: #d32f2f;
   background-color: #fff0f0;
-  padding: 8px; /* 少しコンパクト */
+  padding: 8px;
   border-radius: 8px;
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 
 .form {
-  max-width: 100%; /* スマホ幅に合わせる */
+  width: 100%;
   margin: 0 auto 20px;
-  padding: 16px; /* パディングを少し小さく */
-  border-radius: 16px;
+  padding: 16px;
+  border-radius: 18px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
   background: linear-gradient(135deg, #fff9f4, #fff1e0);
   border: 2px solid #ffd1dc;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* 上下間隔 */
 }
 
 textarea {
   width: 100%;
-  padding: 8px;
-  font-size: 14px; /* スマホ用に少し小さく */
-  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 15px;
   border-radius: 16px;
   border: 1px solid #ddd;
-  height: 150px; /* 少し短め */
+  min-height: 150px;
+  max-height: 300px;
+  resize: vertical; /* 縦だけ伸縮可能 */
   box-sizing: border-box;
-  resize: none;
+  font-family: inherit;
 }
 
 select, input, button {
   width: 100%;
-  padding: 8px;
-  font-size: 14px;
-  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 15px;
   border-radius: 16px;
   border: 1px solid #ddd;
   box-sizing: border-box;
@@ -73,28 +77,28 @@ button#sendBtn {
 button#sendBtn:hover { background: #d81b60; }
 
 #customization {
-  max-width: 100%;
-  margin: 0 auto 16px;
+  width: 100%;
+  margin-bottom: 20px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-direction: column; /* 縦並び */
+  gap: 12px;
 }
-#customization div { flex: 1 1 45%; min-width:120px; }
-#customization label { display:block; font-size:13px; margin-bottom:4px; }
+#customization div { width: 100%; }
+#customization label { display:block; font-size:14px; margin-bottom:4px; }
 
-/* フッター */
 .footer { text-align:center; font-size:12px; color:#888; margin:30px 0 10px; }
 
-/* スマホ用メディアクエリ */
+/* スマホ対応 */
 @media(max-width:480px){
   body{ padding: 12px; }
   h2{ font-size: 20px; margin-bottom: 12px; }
   #countdown{ font-size:16px; padding:6px; }
-  .form{ padding:12px; border-radius:14px; }
-  textarea, select, input, button{ font-size:13px; padding:6px; border-radius:14px; }
-  #customization div{ flex: 1 1 100%; }
+  .form{ padding:12px; border-radius:14px; gap:10px; }
+  textarea, select, input, button{ font-size:14px; padding:8px; border-radius:14px; }
+  #customization div{ width: 100%; }
 }
 </style>
+
 
 </head>
 <body>
@@ -134,7 +138,7 @@ button#sendBtn:hover { background: #d81b60; }
 
   <input type="text" id="name" placeholder="名前">
 
-  <textarea id="message" placeholder="先生へのメッセージ（3〜5行）"></textarea>
+  <textarea id="message" placeholder="先生へのメッセージ"></textarea>
   <button id="sendBtn">メッセージを送る</button>
 </div>
 
@@ -226,4 +230,5 @@ document.getElementById("sendBtn").addEventListener("click",()=>{
 
 </body>
 </html>
+
 
