@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>メッセージカード</title>
+
+<style>
+/* ===== 全体 ===== */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffe4ec, #ffffff);
+  opacity: 1;
+}
+
+body.fade-out {
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+
+/* ===== 桜背景 ===== */
+.bg {
+  position: fixed;
+  top: -20%;
+  left: 0;
+  width: 100%;
+  height: 140%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* 🌸 花びら */
+.sakura {
+  position: absolute;
+  top: -15%;
+  width: 18px;
+  height: 12px;
+  background: rgba(255,182,193,0.75);
+  border-radius: 60% 40% 60% 40%;
+  animation:
+    fall linear infinite,
+    sway ease-in-out infinite;
+}
+
+/* 落下 */
+@keyframes fall {
+  from {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.9;
+  }
+  to {
+    transform: translateY(120vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* 左右にふわふわ */
+@keyframes sway {
+  0%   { margin-left: 0; }
+  50%  { margin-left: 40px; }
+  100% { margin-left: 0; }
+}
+
+/* ===== 表紙 ===== */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cover h1 {
+  font-size: 100px;
+  margin-bottom: 10px;
+}
+
+.cover p {
+  font-size: 35px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* ===== ボタン ===== */
+.cover a {
+  background: #f48fb1;
+  color: white;
+  text-decoration: none;
+  padding: 14px 26px;
+  border-radius: 22px;
+  font-size: 16px;
+  transition: transform .2s;
+}
+
+.cover a:active {
+  transform: scale(0.95);
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="cover">
+  <h1>兵藤先生へ</h1>
+  <p>
+    メッセージカードを書きました<br>
+    感謝の気持ちを込めて
+  </p>
+  <a href="view_hyodo.html" id="go">メッセージを見る</a>
+</div>
+
+<script>
+/* ===== 桜生成（サイズ差はっきり版） ===== */
+const sakuraCount = 35;
+const bg = document.querySelector(".bg");
+
+for (let i = 0; i < sakuraCount; i++) {
+  const s = document.createElement("div");
+  s.className = "sakura";
+
+  // 横位置
+  s.style.left = Math.random() * 100 + "%";
+
+  // 即スタート
+  s.style.animationDelay = `-${Math.random() * 20}s`;
+
+  // 🌸 奥行き（0=奥 / 1=手前）
+  const depth = Math.random();
+
+  // 🌸 サイズ（手前ほど大きい）
+  const scale = 0.4 + depth * 1.0; // ←ここが肝
+  s.style.transform = `scale(${scale})`;
+
+  // 🌸 落下速度（手前ほど速い）
+  const fallDur = 30 - depth * 12;
+  const swayDur = 4 + Math.random() * 4;
+  s.style.animationDuration = `${fallDur}s, ${swayDur}s`;
+
+  // 🌸 透明度（奥は薄い）
+  s.style.opacity = 0.3 + depth * 0.7;
+
+  bg.appendChild(s);
+}
+
+
+/* ===== フェード遷移 ===== */
+document.getElementById("go").addEventListener("click", e => {
+  e.preventDefault();
+  document.body.classList.add("fade-out");
+  setTimeout(() => location.href = "view_hyodo.html", 600);
+});
+</script>
+
+</body>
+</html>
