@@ -48,8 +48,11 @@ h2 {
   gap: 3vw;
   box-sizing: border-box;
 }
-
-textarea, input, select, button {
+input{
+  height:45px
+}
+  
+textarea,select, button {
   width: 100%;
   font-size: clamp(14px,3.5vw,16px);
   padding: 3vw;
@@ -142,7 +145,7 @@ button#sendBtn:hover { background: #d81b60; }
   </select>
 
   <input type="text" id="name" placeholder="名前">
-  <textarea id="message" placeholder="先生へのメッセージ（3〜5行）"></textarea>
+  <textarea id="message" placeholder="先生へのメッセージ"></textarea>
   <button id="sendBtn">メッセージを送る</button>
 </div>
 
@@ -229,3 +232,4 @@ document.getElementById("sendBtn").addEventListener("click",()=>{
 
 </body>
 </html>
+
