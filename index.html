@@ -2,68 +2,66 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>卒業メッセージ（投稿）</title>
+<title>メッセージカード（入力）</title>
 <link rel="stylesheet" href="style.css"> 
 <style>
 body {
-  padding: 20px;
+  padding: 16px;
   font-family: 'Noto Serif JP', serif;
   background: linear-gradient(135deg, #fff1f5, #ffffff, #fce4ec);
   color: #333;
 }
 
-h2 { text-align: center; margin-bottom: 15px; font-size:26px; color:#d81b60; }
+h2 { 
+  text-align: center; 
+  margin-bottom: 15px; 
+  font-size: 24px; /* 少し小さく */
+  color:#d81b60; 
+}
 
 #countdown {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px; /* スマホで見やすいサイズに */
   color: #d32f2f;
   background-color: #fff0f0;
-  padding: 10px;
+  padding: 8px; /* 少しコンパクト */
   border-radius: 8px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 
 .form {
-  max-width: 600px;
+  max-width: 100%; /* スマホ幅に合わせる */
   margin: 0 auto 20px;
-  padding: 20px;
-  border-radius: 18px;
+  padding: 16px; /* パディングを少し小さく */
+  border-radius: 16px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-  transition: all 0.3s;
   background: linear-gradient(135deg, #fff9f4, #fff1e0);
   border: 2px solid #ffd1dc;
 }
 
-
-
 textarea {
   width: 100%;
-  padding: 10px;
-  font-size: 15px;
-  margin-bottom: 12px;
-  border-radius: 20px;
+  padding: 8px;
+  font-size: 14px; /* スマホ用に少し小さく */
+  margin-bottom: 10px;
+  border-radius: 16px;
   border: 1px solid #ddd;
-  font-family: inherit;
-  box-sizing: border-box;
-  resize: none;  
-  height: 200px;
-}
-
-select, input, button {
-  width: 100%;
-  padding: 10px;
-  font-size: 15px;
-  margin-bottom: 12px;
-  border-radius: 20px;
-  border: 1px solid #ddd;
-  font-family: inherit;
+  height: 150px; /* 少し短め */
   box-sizing: border-box;
   resize: none;
 }
 
+select, input, button {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border-radius: 16px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
 
 button#sendBtn {
   background: #f48fb1;
@@ -75,22 +73,33 @@ button#sendBtn {
 button#sendBtn:hover { background: #d81b60; }
 
 #customization {
-  max-width: 600px;
-  margin: 0 auto 20px;
+  max-width: 100%;
+  margin: 0 auto 16px;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 8px;
 }
-#customization div { flex: 1 1 30%; min-width:150px; }
-#customization label { display:block; font-size:14px; margin-bottom:4px; }
+#customization div { flex: 1 1 45%; min-width:120px; }
+#customization label { display:block; font-size:13px; margin-bottom:4px; }
 
 /* フッター */
 .footer { text-align:center; font-size:12px; color:#888; margin:30px 0 10px; }
+
+/* スマホ用メディアクエリ */
+@media(max-width:480px){
+  body{ padding: 12px; }
+  h2{ font-size: 20px; margin-bottom: 12px; }
+  #countdown{ font-size:16px; padding:6px; }
+  .form{ padding:12px; border-radius:14px; }
+  textarea, select, input, button{ font-size:13px; padding:6px; border-radius:14px; }
+  #customization div{ flex: 1 1 100%; }
+}
 </style>
+
 </head>
 <body>
 
-<h2>卒業メッセージ送信フォーム</h2>
+<h2>メッセージカード入力フォーム</h2>
 <div id="countdown">締め切りまで：読み込み中…</div>
 
 <div id="customization">
@@ -217,3 +226,4 @@ document.getElementById("sendBtn").addEventListener("click",()=>{
 
 </body>
 </html>
+
