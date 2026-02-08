@@ -31,6 +31,8 @@ h2 {
   text-align: center;
   margin-bottom: 4vw;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  max-width: 600px;
+  margin: 0 auto 5vw;
 }
 
 /* カードフォーム */
@@ -113,15 +115,15 @@ button#sendBtn:hover { background: #d81b60; }
 <div id="customization">
   <div>
     <label for="bgColor">背景色</label>
-    <input type="color" id="bgColor" value="#fff9f4">
+    <input type="color" id="bgColor" value="#fff9f4" style="height:45px">
   </div>
   <div>
     <label for="borderColor">枠線の色</label>
-    <input type="color" id="borderColor" value="#ffd1dc">
+    <input type="color" id="borderColor" value="#ffd1dc" style="height:45px">
   </div>
   <div>
     <label for="textColor">文字色</label>
-    <input type="color" id="textColor" value="#333333">
+    <input type="color" id="textColor" value="#333333" style="height:45px">
   </div>
   <div>
     <label for="borderWidth">枠線の太さ</label>
@@ -229,3 +231,4 @@ document.getElementById("sendBtn").addEventListener("click",()=>{
 
 </body>
 </html>
+
