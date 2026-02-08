@@ -48,11 +48,18 @@ h2 {
   gap: 3vw;
   box-sizing: border-box;
 }
-input{
-  height:45px
+
+#customization input[type="color"] {
+  height: 8vh;
+  min-height: 40px;  /* 小さい画面用 */
+  max-height: 70px;  /* 大きい画面用 */
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #ddd;
 }
+
   
-textarea,select, button {
+textarea,input,select, button {
   width: 100%;
   font-size: clamp(14px,3.5vw,16px);
   padding: 3vw;
@@ -232,4 +239,5 @@ document.getElementById("sendBtn").addEventListener("click",()=>{
 
 </body>
 </html>
+
 
