@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>卒業メッセージ（投稿）</title>
+<title>メッセージカード（入力）</title>
 <link rel="stylesheet" href="style.css">
 <style>
 body {
@@ -108,7 +108,7 @@ button#sendBtn:hover { background: #d81b60; }
 </head>
 <body>
 
-<h2>卒業メッセージ送信フォーム</h2>
+<h2>メッセージカード入力フォーム</h2>
 <div id="countdown">締め切りまで：読み込み中…</div>
 
 <div id="customization">
@@ -143,11 +143,11 @@ button#sendBtn:hover { background: #d81b60; }
   </select>
 
   <input type="text" id="name" placeholder="名前">
-  <textarea id="message" placeholder="先生へのメッセージ（3〜5行）"></textarea>
+  <textarea id="message" placeholder="先生へのメッセージ"></textarea>
   <button id="sendBtn">メッセージを送る</button>
 </div>
 
-<div class="footer">３年８組 卒業記念</div>
+<div class="footer">３年８組 </div>
 
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbz1a57zXdCmUqGvxdrWfLoEagRk-R32Vl-SbIpeMiS_5zdctbVhAlYsQ5bfEtQIquCx-g/exec";
@@ -230,5 +230,6 @@ document.getElementById("sendBtn").addEventListener("click",()=>{
 
 </body>
 </html>
+
 
 
