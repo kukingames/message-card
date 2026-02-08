@@ -12,8 +12,20 @@ body {
   margin:0;
 }
 
-/* タイトル */
-h2 { text-align: center; margin-bottom: 15px; font-size:26px; color:#d81b60; }
+h2 { text-align:center; margin-bottom:15px; font-size:26px; color:#000000; }
+
+/* 幅統一用フォーム共通クラス */
+.form-container {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto 20px;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  background: linear-gradient(135deg, #fff9f4, #fff1e0);
+  border: 2px solid #ffd1dc;
+  box-sizing: border-box;
+}
 
 /* カウントダウン */
 #countdown {
@@ -21,45 +33,52 @@ h2 { text-align: center; margin-bottom: 15px; font-size:26px; color:#d81b60; }
   font-size: 18px;
   color: #d32f2f;
   background-color: #fff0f0;
-  padding: 12px;
-  border-radius: 8px;
   text-align: center;
-  margin: 0 auto 20px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
-  max-width: 500px;
-  width: 100%;
-}
-
-/* フォーム */
-.form {
-  max-width: 500px;
-  margin: 0 auto 20px;
-  padding: 20px;
-  border-radius: 18px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-  transition: all 0.3s;
-  background: linear-gradient(135deg, #fff9f4, #fff1e0);
-  border: 2px solid #ffd1dc;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* テキストエリア・入力 */
-textarea, input, select, button {
-  width: 100%;
   padding: 12px;
+  border-radius: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  border: 2px solid #ffd1dc;
+  box-sizing: border-box;
+}
+
+/* 色選択・カスタマイズ */
+#customization {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+#customization div {
+  flex: 1 1 30%;
+  min-width: 150px;
+}
+#customization label { display:block; font-size:14px; margin-bottom:4px; }
+#customization input[type="color"] {
+  width: 100%;
+  height: 50px;
+  padding:0;
+  border-radius: 18px;
+  border:1px solid #ddd;
+  cursor:pointer;
+  box-sizing:border-box;
+}
+
+/* 送信フォーム */
+textarea, input[type="text"], select, button {
+  width: 100%;
+  padding: 10px;
   font-size: 15px;
+  margin-bottom: 12px;
   border-radius: 20px;
   border: 1px solid #ddd;
   font-family: inherit;
   box-sizing: border-box;
+  resize: none;
 }
 
-/* テキストエリア */
-textarea { height: 200px; resize:none; }
+textarea { height:200px; }
 
-/* ボタン */
 button#sendBtn {
   background: #f48fb1;
   color: white;
@@ -69,35 +88,26 @@ button#sendBtn {
 }
 button#sendBtn:hover { background: #d81b60; }
 
-/* カスタマイズ（色選択・枠線） */
-#customization {
-  max-width: 500px;
-  margin: 0 auto 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-#customization div { flex: 1 1 30%; min-width: 150px; }
-#customization label { display:block; font-size:14px; margin-bottom:4px; }
-
 /* フッター */
 .footer { text-align:center; font-size:12px; color:#888; margin:30px 0 10px; }
 
 @media(max-width:480px){
+  body{padding:16px;}
   h2{font-size:22px;}
-  #countdown{font-size:16px; padding:10px;}
-  .form{padding:16px;}
-  textarea, input, select, button{font-size:14px; padding:10px;}
-  #customization div{flex: 1 1 45%;}
+  textarea{height:160px;}
+  #customization input[type="color"]{height:45px;}
 }
 </style>
 </head>
 <body>
 
 <h2>メッセージカード入力フォーム</h2>
-<div id="countdown">締め切りまで：読み込み中…</div>
 
-<div id="customization">
+<!-- カウントダウン -->
+<div class="form-container" id="countdown">締め切りまで：読み込み中…</div>
+
+<!-- 色・枠線・文字色カスタマイズ -->
+<div id="customization" class="form-container">
   <div>
     <label for="bgColor">背景色</label>
     <input type="color" id="bgColor" value="#fff9f4">
@@ -116,7 +126,19 @@ button#sendBtn:hover { background: #d81b60; }
   </div>
 </div>
 
-<div class="form">
+<!-- メッセージフォーム -->
+<div class="form-container">
+  <select id="teacher">
+    <option value="" disabled selected hidden>先生を選択してください</option>
+    <option value="兵藤先生">兵藤先生</option>
+    <option value="長屋先生">長屋先生</option>
+    <option value="下村先生">下村先生</option>
+  </select>
+
+  <select id="no">
+    <option value="" disabled selected hidden>番号を選択してください</option>
+  </select>
+
   <input type="text" id="name" placeholder="名前">
   <textarea id="message" placeholder="先生へのメッセージ"></textarea>
   <button id="sendBtn">メッセージを送る</button>
@@ -126,6 +148,36 @@ button#sendBtn:hover { background: #d81b60; }
 
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbz1a57zXdCmUqGvxdrWfLoEagRk-R32Vl-SbIpeMiS_5zdctbVhAlYsQ5bfEtQIquCx-g/exec";
+
+const formCard = document.querySelector(".form-container");
+const bgColorInput = document.getElementById("bgColor");
+const borderColorInput = document.getElementById("borderColor");
+const textColorInput = document.getElementById("textColor");
+const borderWidthInput = document.getElementById("borderWidth");
+
+// 背景色・文字色・枠線のリアルタイム反映
+function updateCardStyle() {
+  formCard.style.background = bgColorInput.value;
+  formCard.style.border = `${borderWidthInput.value}px solid ${borderColorInput.value}`;
+  formCard.style.color = textColorInput.value;
+  formCard.querySelectorAll("input, textarea, select").forEach(el=>{
+    el.style.color = textColorInput.value;
+  });
+}
+bgColorInput.addEventListener("input", updateCardStyle);
+borderColorInput.addEventListener("input", updateCardStyle);
+textColorInput.addEventListener("input", updateCardStyle);
+borderWidthInput.addEventListener("input", updateCardStyle);
+updateCardStyle();
+
+// 名簿番号
+const noInput = document.getElementById("no");
+for(let i=1;i<=40;i++){
+  const option=document.createElement("option");
+  option.value=i;
+  option.textContent=i;
+  noInput.appendChild(option);
+}
 
 // カウントダウン
 const DEADLINE = new Date("2026-02-23T23:59:59");
@@ -146,37 +198,23 @@ function updateCountdown(){
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-// カードスタイル変更
-const formCard = document.querySelector(".form");
-const bgColorInput = document.getElementById("bgColor");
-const borderColorInput = document.getElementById("borderColor");
-const textColorInput = document.getElementById("textColor");
-const borderWidthInput = document.getElementById("borderWidth");
-
-function updateCardStyle() {
-  formCard.style.background = bgColorInput.value;
-  formCard.style.border = `${borderWidthInput.value}px solid ${borderColorInput.value}`;
-  formCard.style.color = textColorInput.value;
-  formCard.querySelectorAll("input, textarea").forEach(el=>el.style.color=textColorInput.value);
-}
-
-bgColorInput.addEventListener("input", updateCardStyle);
-borderColorInput.addEventListener("input", updateCardStyle);
-textColorInput.addEventListener("input", updateCardStyle);
-borderWidthInput.addEventListener("input", updateCardStyle);
-updateCardStyle();
-
 // メッセージ送信
 document.getElementById("sendBtn").addEventListener("click",()=>{
-  const name=document.getElementById("name").value.trim();
-  const message=document.getElementById("message").value.trim();
-  if(!name || !message){ alert("名前とメッセージを入力してください"); return; }
+   const teacher=document.getElementById("teacher").value;
+   const no=noInput.value.trim();
+   const name=document.getElementById("name").value.trim();
+   const message=document.getElementById("message").value.trim();
+  
+  if(!no || !name || !teacher || !message){
+    alert("番号・名前・先生・メッセージを入力してください");
+    return;
+  }
 
-  if(confirm(`送信しますか？\n名前: ${name}\nメッセージ:\n${message}`)){
+  if(confirm(`送信しますか？\n番号: ${no}\n名前: ${name}\n先生: ${teacher}\nメッセージ:\n${message}`)){
     fetch(API_URL,{
       method:"POST",
       body:JSON.stringify({
-        name, message,
+        no, name, teacher, message,
         bgColor:bgColorInput.value,
         borderColor:borderColorInput.value,
         borderWidth:borderWidthInput.value,
