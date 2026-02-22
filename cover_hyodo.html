@@ -43,7 +43,6 @@ body.fade-out {
     sway ease-in-out infinite;
 }
 
-/* 落下 */
 @keyframes fall {
   from {
     transform: translateY(0) rotate(0deg);
@@ -55,7 +54,6 @@ body.fade-out {
   }
 }
 
-/* 左右にふわふわ */
 @keyframes sway {
   0%   { margin-left: 0; }
   50%  { margin-left: 40px; }
@@ -89,6 +87,17 @@ body.fade-out {
   line-height: 1.6;
 }
 
+/* ===== 🎥 Drive動画 ===== */
+.intro-video {
+  width: 340px;
+  max-width: 85%;
+  height: 200px;
+  border-radius: 25px;
+  margin: 25px 0;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  border: none;
+}
+
 /* ===== ボタン ===== */
 .cover a {
   background: #f48fb1;
@@ -112,15 +121,24 @@ body.fade-out {
 
 <div class="cover">
   <h1>兵藤先生へ</h1>
+
+  <!-- 🎬 Googleドライブ動画 -->
+  <iframe
+    class="intro-video"
+    src="https://drive.google.com/file/d/1MRSEdAfOrQsLFOIrbVJ7-jG_1DjB0Lyi/preview"
+    allow="autoplay">
+  </iframe>
+
   <p>
     感謝の気持ちを込めて<br>
     メッセージカードを書きました
   </p>
+
   <a href="view_hyodo.html" id="go">メッセージを見る</a>
 </div>
 
 <script>
-/* ===== 桜生成（サイズ差はっきり版） ===== */
+/* ===== 桜生成 ===== */
 const sakuraCount = 35;
 const bg = document.querySelector(".bg");
 
@@ -128,30 +146,21 @@ for (let i = 0; i < sakuraCount; i++) {
   const s = document.createElement("div");
   s.className = "sakura";
 
-  // 横位置
   s.style.left = Math.random() * 100 + "%";
-
-  // 即スタート
   s.style.animationDelay = `-${Math.random() * 20}s`;
 
-  // 🌸 奥行き（0=奥 / 1=手前）
   const depth = Math.random();
-
-  // 🌸 サイズ（手前ほど大きい）
-  const scale = 0.4 + depth * 1.0; // ←ここが肝
+  const scale = 0.4 + depth * 1.0;
   s.style.transform = `scale(${scale})`;
 
-  // 🌸 落下速度（手前ほど速い）
   const fallDur = 30 - depth * 12;
   const swayDur = 4 + Math.random() * 4;
   s.style.animationDuration = `${fallDur}s, ${swayDur}s`;
 
-  // 🌸 透明度（奥は薄い）
   s.style.opacity = 0.3 + depth * 0.7;
 
   bg.appendChild(s);
 }
-
 
 /* ===== フェード遷移 ===== */
 document.getElementById("go").addEventListener("click", e => {
@@ -163,4 +172,3 @@ document.getElementById("go").addEventListener("click", e => {
 
 </body>
 </html>
-
