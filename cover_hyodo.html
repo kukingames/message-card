@@ -87,19 +87,28 @@ body.fade-out {
   line-height: 1.6;
 }
 
-/* ===== 🎥 Drive動画 ===== */
-.intro-video {
-  width: 90vw;        /* 画面の90%幅 */
-  max-width: 800px;   /* PCでは最大800px */
-  height: 60vh;       /* 画面高さの60% */
-  border-radius: 20px;
+/* ===== 🎬 動画ボタン ===== */
+.video-btn {
+  display: inline-block;
+  width: 90vw;
+  max-width: 800px;
+  padding: 20px 0;
   margin: 25px 0;
+  background: #ff80ab;
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  border-radius: 20px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-  border: none;
+  transition: transform .2s ease;
+}
+
+.video-btn:active {
+  transform: scale(0.96);
 }
 
 /* ===== ボタン ===== */
-.cover a {
+.cover a#go {
   background: #f48fb1;
   color: white;
   text-decoration: none;
@@ -109,7 +118,7 @@ body.fade-out {
   transition: transform .2s;
 }
 
-.cover a:active {
+.cover a#go:active {
   transform: scale(0.95);
 }
 </style>
@@ -122,13 +131,13 @@ body.fade-out {
 <div class="cover">
   <h1>兵藤先生へ</h1>
 
-  <!-- 🎬 Googleドライブ動画 -->
-  <iframe
-    class="intro-video"
-    src="https://drive.google.com/file/d/1MRSEdAfOrQsLFOIrbVJ7-jG_1DjB0Lyi/preview"
-    allow="autoplay"
-    allowfullscreen>
-  </iframe>
+  <!-- 🎬 Drive動画を別タブで開く -->
+  <a 
+    href="https://drive.google.com/file/d/1MRSEdAfOrQsLFOIrbVJ7-jG_1DjB0Lyi/view"
+    target="_blank"
+    class="video-btn">
+    🎬 思い出動画を見る
+  </a>
 
   <p>
     感謝の気持ちを込めて<br>
@@ -173,5 +182,3 @@ document.getElementById("go").addEventListener("click", e => {
 
 </body>
 </html>
-
-
