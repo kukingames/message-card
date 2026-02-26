@@ -89,8 +89,24 @@ body.fade-out {
   line-height: 1.6;
 }
 
+/* ===== 🎬 動画ボタン ===== */
+.video-btn {
+  background: #f48fb1;
+  color: white;
+  text-decoration: none;
+  padding: 14px 26px;
+  border-radius: 22px;
+  font-size: 16px;
+  transition: transform .2s;
+  display: inline-block;
+}
+
+.video-btn:active {
+  transform: scale(0.95);
+}
+
 /* ===== ボタン ===== */
-.cover a {
+.cover a#go {
   background: #f48fb1;
   color: white;
   text-decoration: none;
@@ -100,7 +116,7 @@ body.fade-out {
   transition: transform .2s;
 }
 
-.cover a:active {
+.cover a#go:active {
   transform: scale(0.95);
 }
 </style>
@@ -112,6 +128,15 @@ body.fade-out {
 
 <div class="cover">
   <h1>下村先生へ</h1>
+
+  <!-- 🎬 Drive動画を別タブで開く -->
+  <a 
+    href="https://drive.google.com/file/d/1FnwIv3FVTbDkZQ1aA9BtDQWrs5q83_H2/view"
+    target="_blank"
+    class="video-btn">
+    🎬 思い出ムービーを見る
+  </a>
+  
   <p>
     感謝の気持ちを込めて<br>
     メッセージカードを書きました
@@ -163,6 +188,7 @@ document.getElementById("go").addEventListener("click", e => {
 
 </body>
 </html>
+
 
 
 
